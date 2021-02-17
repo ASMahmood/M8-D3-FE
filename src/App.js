@@ -9,8 +9,10 @@ import Read from "./pages/read/Read";
 import Search from "./pages/search/Search";
 import Stats from "./pages/stats";
 import Stories from "./pages/stories";
+import Login from "./pages/login/Login";
 const routes = [
-  { path: "/", component: Home },
+  { path: "/", component: Login },
+  { path: "/home", component: Home },
   { path: "/new-story", component: NewStory },
   { path: "/edit-story/:slug", component: NewStory },
   { path: "/topics", component: Topics },

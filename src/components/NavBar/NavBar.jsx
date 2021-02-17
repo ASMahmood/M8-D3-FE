@@ -13,13 +13,13 @@ import {
   IoBookmarksOutline,
   IoSearchOutline,
 } from "react-icons/io5";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 export default class NavBar extends Component {
   render() {
     return (
-      <Navbar  style={{paddingTop:24}}>
+      <Navbar style={{ paddingTop: 24 }}>
         <Container>
-          <Navbar.Brand as={Link} to="/">
+          <Navbar.Brand as={Link} to="/home">
             <img style={{ height: 54 }} alt="medium-logo" src={logo} />
           </Navbar.Brand>
           <h5 style={{ fontWeight: "bold", marginTop: "0.6em" }}>
@@ -28,7 +28,7 @@ export default class NavBar extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link  as={Link} to="/search">
+              <Nav.Link as={Link} to="/search">
                 <IoSearchOutline style={{ fontSize: 20 }} />
               </Nav.Link>
               <Nav.Link href="#home">
@@ -50,14 +50,15 @@ export default class NavBar extends Component {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to="/new-story">Write a story</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/new-story">
+                    Write a story
+                  </Dropdown.Item>
                   <Dropdown.Item as={Link} to="/stories">
-                   Stories
+                    Stories
                   </Dropdown.Item>
                   <Dropdown.Item as={Link} to="/stats">
-                   Stats
+                    Stats
                   </Dropdown.Item>
-                  
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>
