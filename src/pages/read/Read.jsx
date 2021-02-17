@@ -17,7 +17,12 @@ class Read extends Component {
   fetchArticle = async () => {
     try {
       let response = await fetch(
-        "http://localhost:9001/articles/" + this.props.match.params.slug
+        "http://localhost:9001/articles/" + this.props.match.params.slug,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
       );
       let article = await response.json();
       console.log(article);

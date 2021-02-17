@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
-export default function Login() {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -21,6 +21,7 @@ export default function Login() {
       if (resp.access) {
         localStorage.setItem("accessToken", resp.access);
         localStorage.setItem("refreshToken", resp.refresh);
+        props.history.push("/home");
       }
       console.log(resp);
     } catch (error) {

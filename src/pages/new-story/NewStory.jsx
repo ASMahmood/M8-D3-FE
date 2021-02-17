@@ -56,6 +56,7 @@ export default class NewStory extends Component {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("accessToken"),
         },
       });
       let res = await response.json(body);
@@ -69,7 +70,12 @@ export default class NewStory extends Component {
   verifyUser = async () => {
     try {
       let response = await fetch(
-        "http://localhost:9001/authors/?name=" + this.state.authorName
+        "http://localhost:9001/authors/?name=" + this.state.authorName,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
       );
       if (response.ok) {
         let author = await response.json();
@@ -92,6 +98,9 @@ export default class NewStory extends Component {
           authorID,
         {
           method: "POST",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
         }
       );
       console.log(response);
@@ -118,6 +127,7 @@ export default class NewStory extends Component {
             body: JSON.stringify(body),
             headers: {
               "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("accessToken"),
             },
           }
         );
@@ -127,13 +137,14 @@ export default class NewStory extends Component {
           body: JSON.stringify(body),
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
           },
         });
         let res = await response.json();
         console.log("RESPONSE", res);
         this.addArticleToUser(res, authorID);
       }
-      this.props.history.push("/");
+      this.props.history.push("/home");
     } catch (error) {
       console.log(error);
     }
@@ -141,7 +152,12 @@ export default class NewStory extends Component {
   fetchAndAssign = async () => {
     try {
       let response = await fetch(
-        "http://localhost:9001/articles/" + this.props.match.params.slug
+        "http://localhost:9001/articles/" + this.props.match.params.slug,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
       );
       let article = await response.json();
       console.log(article);
