@@ -4,14 +4,24 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [img, setImg] = useState("");
 
   const loginFetch = async (e) => {
     e.preventDefault();
     try {
       let response = await fetch("http://localhost:9001/authors/login", {
         method: "POST",
+        body: JSON.stringify({ email: email, password: password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       let resp = await response.json();
+      if (resp.access) {
+        localStorage.setItem("accessToken", resp.access);
+        localStorage.setItem("refreshToken", resp.refresh);
+      }
       console.log(resp);
     } catch (error) {
       console.log(error);
